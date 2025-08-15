@@ -1,0 +1,11 @@
+Visual:
+Create Menu Screen design
+Create First Person UI
+Set up Room Decor
+Set up VFXs
+Set up animations
+Gameplay:
+Set up interactions
+Set up Teleportation nodes
+Set up Puzzles (2 per room)
+
