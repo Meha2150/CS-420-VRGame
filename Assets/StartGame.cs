@@ -1,16 +1,16 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+  public void StartTheGame()
+  {
+    // Load the main game scene
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void QuitGame()
     {
-        
+        // Quit the application
+        Application.Quit();
     }
 }
