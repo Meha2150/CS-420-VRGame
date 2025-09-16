@@ -11,14 +11,11 @@ public class LeverBase : MonoBehaviour
     public UnityEvent onDeactivated;
 
     // Optional: simple visual feedback
-    [Header("Optional Feedback")]
-    public Renderer indicatorRenderer;
-    public Color inactiveColor = Color.gray;
-    public Color activeColor = Color.green;
+    
 
     void Start()
     {
-        ApplyVisual();
+       
     }
 
     public void SetActivated(bool value)
@@ -33,10 +30,6 @@ public class LeverBase : MonoBehaviour
 
     void ApplyVisual()
     {
-        if (indicatorRenderer != null)
-        {
-            var m = indicatorRenderer.material;
-            m.color = IsActivated ? activeColor : inactiveColor;
-        }
+        
     }
 }
