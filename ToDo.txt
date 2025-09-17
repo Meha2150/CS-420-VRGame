@@ -1,11 +1,12 @@
 Visual:
-Create Menu Screen design
 Create First Person UI
-Set up Room Decor
 Set up VFXs
-Set up animations
 Gameplay:
-Set up interactions
-Set up Teleportation nodes
-Set up Puzzles (2 per room)
+Finish up interactions:
+Levers in room 2 getting angles to play the animation
+All interactions in Room 3
+Puzzle one for room 1
+Set up Teleportation area or use locomotion
+Set up Puzzles (2 per room) (Room 3) 
+
 
