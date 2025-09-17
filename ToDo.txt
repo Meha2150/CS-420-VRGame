@@ -1,12 +1,14 @@
 Visual:
 Create First Person UI
+Create Pause Menu
 Set up VFXs
 Gameplay:
-Finish up interactions:
-Levers in room 2 getting angles to play the animation
+Levers in room 2 getting angles to play the animation (need to test)
 All interactions in Room 3
-Puzzle one for room 1
-Set up Teleportation area or use locomotion
-Set up Puzzles (2 per room) (Room 3) 
+Finish Puzzle one for room 1
+Set up Puzzle for room 3 (reduce down to one)
+finalize the vr controller buttons
+get the puzzle menu working
+add comfortability to the game (blinders when turning and moving) 
 
 
