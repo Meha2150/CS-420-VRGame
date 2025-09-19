@@ -6,6 +6,9 @@ TagManager:
   tags:
   - PuzzleEnd
   - SecondCamera
+  - Crown
+  - Puzzle 5
+  - Puzzle1Key
   layers:
   - Default
   - TransparentFX
