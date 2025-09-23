@@ -29,7 +29,7 @@ public class Room1Puzzle1Controller : MonoBehaviour
 
         if (!targetRb) Debug.LogError($"{name}: Target has no Rigidbody.");
         if (!targetGrab) Debug.LogError($"{name}: Target has no XRGrabInteractable.");
-        Debug.Log("Script Starting");
+        
         
     }
 
