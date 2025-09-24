@@ -35,6 +35,7 @@ public class Room1Interactions : MonoBehaviour
             exitDoorAnimator.SetTrigger(Down);   // OPEN
             Debug.Log("Plate pressed -> OPEN");
         }
+        
     }
 
     private void OnTriggerExit(Collider other)

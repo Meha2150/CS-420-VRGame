@@ -39,8 +39,7 @@ public class LeverPuzzleController : MonoBehaviour
     [Header("Animation / Events")]
     public Animator animator;
     public string solvedTrigger = "Play";
-    public UnityEvent onSolved;
-    public UnityEvent onUnsolved; // fired when puzzle leaves solved state
+    
 
     float solvedTimer = 0f;
     bool isSolved = false;

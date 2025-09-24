@@ -44,6 +44,6 @@ public class Room2ButtonController : MonoBehaviour
         // Ray-only filter if desired
         if (rayOnly && !(args.interactorObject is XRRayInteractor)) return;
 
-        if (puzzle) puzzle.HandleButtonPressed(buttonId);
+        //if (puzzle) puzzle.HandleButtonPressed(buttonId);
     }
 }
