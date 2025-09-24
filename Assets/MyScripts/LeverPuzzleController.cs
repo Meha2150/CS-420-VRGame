@@ -65,14 +65,14 @@ public class LeverPuzzleController : MonoBehaviour
                 {
                     if (animator && !string.IsNullOrEmpty(solvedTrigger))
                         animator.SetTrigger(solvedTrigger);
-                    onSolved?.Invoke();
+                    
                     hasPlayed = true;
                 }
             }
         }
         else
         {
-            if (isSolved) onUnsolved?.Invoke();
+            if (isSolved) 
             isSolved = false;
             solvedTimer = 0f;
         }
