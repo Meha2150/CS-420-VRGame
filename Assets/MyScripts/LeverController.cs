@@ -2,30 +2,27 @@ using UnityEngine;
 
 public class LeverController : MonoBehaviour
 {
-    [Header("References")]
-    public HingeJoint hinge;                 // assign the lever's HingeJoint
-    public Animator leftDoorAnimator;        // drag in Inspector
-    public Animator rightDoorAnimator;       // drag in Inspector
+    [Header("Hinge")]
+    public HingeJoint hinge;          // assign the lever's HingeJoint
 
-    [Header("Angle thresholds (deg)")]
-    public float upThreshold = -29f;         // <= this => Up
-    public float downThreshold = 29f;        // >= this => Down
-    [Tooltip("Gap to prevent flicker near thresholds.")]
-    public float hysteresis = 3f;
+    [Header("Thresholds (deg)")]
+    public float upThreshold = -29f; // <= this => Up
+    public float downThreshold = 29f; // >= this => Down
+   
 
-    public enum Target { Up = 1, Down = -1, Either = 0 }
     [Header("Solve when lever is...")]
-    public Target orientation = Target.Up;
+    [Tooltip("1 = Up, -1 = Down, 0 = Either")]
+    public int orientation = 0;
 
-    [Header("Animator")]
-    public string solveTrigger = "LeverCorrect";
+    
 
-    private enum State { Mid, Up, Down }
-    private State last = State.Mid;
+    float prevAngle;
+    bool initialized;
+    public int solve = 0;
 
     void Reset()
     {
-        hinge = GetComponent<HingeJoint>();  // only auto-fill hinge on same object
+        hinge = GetComponent<HingeJoint>(); // only auto-fill hinge
     }
 
     void FixedUpdate()
@@ -34,34 +31,30 @@ public class LeverController : MonoBehaviour
 
         float a = hinge.angle;
 
-        // Apply hysteresis so it doesn't chatter at the boundary
-        float upT = (last == State.Up) ? upThreshold + hysteresis : upThreshold;
-        float downT = (last == State.Down) ? downThreshold - hysteresis : downThreshold;
+        // Initialize previous angle on first tick
+        if (!initialized) { prevAngle = a; initialized = true; return; }
 
-        State cur = State.Mid;
-        if (a <= upT) cur = State.Up;
-        else if (a >= downT) cur = State.Down;
+        // Crossing detection (no state machine)
+        bool crossedIntoUp =  (a <= upThreshold);
+        bool crossedIntoDown = (a >= downThreshold);
 
-        if (cur == last) return; // state didn't change
+        if (ShouldFire(crossedIntoUp, crossedIntoDown))
+            Fire();
 
-        // Fire only when entering Up/Down (not Mid), and only if it matches the target
-        if (cur != State.Mid && IsCorrect(cur))
-            FireSolve();
-
-        last = cur;
+        prevAngle = a;
     }
 
-    bool IsCorrect(State cur)
+    bool ShouldFire(bool crossedUp, bool crossedDown)
     {
-        if (orientation == Target.Either) return true;
-        if (orientation == Target.Up) return cur == State.Up;
-        if (orientation == Target.Down) return cur == State.Down;
-        return false;
+        if (orientation == 1) return crossedUp;
+        if (orientation == -1) return crossedDown;
+        /* orientation == 0 (Either) */
+        return crossedUp || crossedDown;
     }
 
-    void FireSolve()
+    void Fire()
     {
-        if (leftDoorAnimator) leftDoorAnimator.SetTrigger(solveTrigger);
-        if (rightDoorAnimator) rightDoorAnimator.SetTrigger(solveTrigger);
+        
+        solve = 1;
     }
 }
