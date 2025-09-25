@@ -13,19 +13,20 @@ public class Room2DoorController : MonoBehaviour
     {
 
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-        
-        for (int i = 0; i < LeverController.Length; i++)
+        if (CorrectLevers <= 4) 
         {
-            CorrectLevers += LeverController[i].solve;
+            CorrectLevers = LeverController[0].solve + LeverController[1].solve + LeverController[2].solve + LeverController[3].solve;
         }
         if (CorrectLevers == LeverController.Length)
         {
+            Debug.Log("Doors open");
             LeftDoorAnimator.SetTrigger(SolveTrigger);
             RightDoorAnimator.SetTrigger(SolveTrigger);
+            CorrectLevers++;
         }
     }
 }
