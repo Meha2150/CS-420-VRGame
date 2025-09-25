@@ -13,6 +13,8 @@ public class Room1Puzzle1Controller : MonoBehaviour
     private Rigidbody targetRb;
     private XRGrabInteractable targetGrab;
 
+    public GameObject food;
+
     private void Reset()
     {
         // Make sure this collider is a trigger
@@ -27,8 +29,7 @@ public class Room1Puzzle1Controller : MonoBehaviour
         targetRb = target.GetComponent<Rigidbody>();
         targetGrab = target.GetComponent<XRGrabInteractable>();
 
-        if (!targetRb) Debug.LogError($"{name}: Target has no Rigidbody.");
-        if (!targetGrab) Debug.LogError($"{name}: Target has no XRGrabInteractable.");
+        
         
         
     }
@@ -39,6 +40,7 @@ public class Room1Puzzle1Controller : MonoBehaviour
         if (targetRb) targetRb.isKinematic = false;
         if (targetGrab) targetGrab.enabled = true;
         Debug.Log("Key is unlocked");
+        Destroy(food);
     }
 
     

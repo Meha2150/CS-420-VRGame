@@ -21,13 +21,6 @@ public class UITimerContoller : MonoBehaviour
     [Tooltip("Show hundredths (00:00:00 style).")]
     public bool showHundredths = true;
 
-    [Header("Events")]
-    public UnityEvent onStarted;
-    public UnityEvent onPaused;
-    public UnityEvent onResumed;
-    public UnityEvent onReset;
-    public UnityEvent onFinished; // countdown hits zero
-
     private bool _running;
     private float _time;  // seconds (elapsed for stopwatch, remaining for countdown)
 
@@ -56,7 +49,7 @@ public class UITimerContoller : MonoBehaviour
             {
                 _time = 0f;
                 _running = false;
-                onFinished?.Invoke();
+                
             }
         }
 
@@ -96,21 +89,21 @@ public class UITimerContoller : MonoBehaviour
     {
         if (_running) return;
         _running = true;
-        onStarted?.Invoke();
+       
     }
 
     public void PauseTimer()
     {
         if (!_running) return;
         _running = false;
-        onPaused?.Invoke();
+        
     }
 
     public void ResumeTimer()
     {
         if (_running) return;
         _running = true;
-        onResumed?.Invoke();
+        
     }
 
     public void ResetTimer()
@@ -118,7 +111,7 @@ public class UITimerContoller : MonoBehaviour
         _running = false;
         _time = (mode == Mode.Countdown) ? Mathf.Max(0f, countdownStartSeconds) : 0f;
         UpdateText();
-        onReset?.Invoke();
+      
     }
 
     public void SetCountdownSeconds(float seconds)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class PauseManager : MonoBehaviour
@@ -46,5 +47,13 @@ public class PauseManager : MonoBehaviour
         if (uiRays != null)
             foreach (var ray in uiRays)
                 if (ray) ray.enabled = paused;
+    }
+    public void Retry()
+    {
+        SceneManager.LoadScene("Scene 1-Level 1");
+    }
+    public void Exit()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }

@@ -4,25 +4,25 @@ using UnityEngine.UIElements.Experimental;
 public class Room3FinalPuzzle : MonoBehaviour
 {
     [Header("Crown Objects")]
-    public GameObject Crown;
-    public GameObject ThroneCrown;
-    public string puzzleTag = "";
-    public MeshRenderer ThroneCrownMesh;
+    [SerializeField] public GameObject Crown;
+    [SerializeField] public GameObject ThroneCrown;
+    [SerializeField] public string puzzleTag = "";
+    [SerializeField] public MeshRenderer ThroneCrownMesh;
     [Header("Animators")]
-    public Animator FloorAnimator1;
-    public Animator FloorAnimator2;
-    public Animator ThroneAnimator;
+    [SerializeField] public Animator FloorAnimator1;
+    [SerializeField] public Animator FloorAnimator2;
+    [SerializeField] public Animator ThroneAnimator;
     [Header("Tags")]
-    public string playTag = "";
-    public string throneTag = "";
+    [SerializeField] public string playTag = "";
+    [SerializeField] public string throneTag = "";
     [Header("Setting up the end")]
-    public GameObject floor;
+    [SerializeField] public GameObject floor;
+    [SerializeField] public GameObject stairs;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ThroneCrownMesh = ThroneCrown.GetComponent<MeshRenderer>();
-        FloorAnimator1 = GetComponent<Animator>();
-        FloorAnimator2 = GetComponent<Animator>();
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,6 +38,7 @@ public class Room3FinalPuzzle : MonoBehaviour
             if (!ThroneAnimator) return;
             ThroneAnimator.SetTrigger(throneTag);
             Destroy(floor);
+            stairs.SetActive(true);
         }
         
     }
