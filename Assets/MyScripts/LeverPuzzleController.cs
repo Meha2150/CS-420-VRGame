@@ -16,9 +16,9 @@ public class LeverPuzzleController : MonoBehaviour
 
         [Header("Angle thresholds (deg)")]
         [Tooltip("Angle >= this is considered UP")]
-        public float upZoneMin = -10f;
+        public float upZoneMin = -29f;
         [Tooltip("Angle <= this is considered DOWN")]
-        public float downZoneMax = -40f;
+        public float downZoneMax = 29f;
 
         [Header("Required orientation")]
         public Zone required = Zone.Down;

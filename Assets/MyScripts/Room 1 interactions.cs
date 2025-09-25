@@ -33,7 +33,7 @@ public class Room1Interactions : MonoBehaviour
         {
             exitDoorAnimator.ResetTrigger(Up);
             exitDoorAnimator.SetTrigger(Down);   // OPEN
-            Debug.Log("Plate pressed -> OPEN");
+            
         }
         
     }
@@ -47,7 +47,7 @@ public class Room1Interactions : MonoBehaviour
             occupants = 0;
             exitDoorAnimator.ResetTrigger(Down);
             exitDoorAnimator.SetTrigger(Up);     // CLOSE
-            Debug.Log("Plate released -> CLOSE");
+            
         }
     }
 
