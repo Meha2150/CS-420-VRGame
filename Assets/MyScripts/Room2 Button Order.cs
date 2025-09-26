@@ -27,20 +27,19 @@ public class Room2ButtonOrder : MonoBehaviour
     [SerializeField] private GameObject Crown;
     private Rigidbody CrownRb;
     private XRGrabInteractable CrownGrab;
+    [SerializeField]private AudioSource triggerSound;
 
     private bool _animTriggerExists;
 
     private void Awake()
     {
-        if (Crown == null)
-            Debug.LogWarning($"{name}: Crown GameObject is not assigned.");
+        
 
         if (Crown != null)
         {
             CrownRb = Crown.GetComponent<Rigidbody>();
             CrownGrab = Crown.GetComponent<XRGrabInteractable>();
-            if (CrownRb == null) Debug.LogWarning($"{name}: Crown has no Rigidbody.");
-            if (CrownGrab == null) Debug.LogWarning($"{name}: Crown has no XRGrabInteractable.");
+            
         }
 
         ValidateAnimatorAndTrigger();
@@ -59,16 +58,8 @@ public class Room2ButtonOrder : MonoBehaviour
     {
         _animTriggerExists = false;
 
-        if (animator == null)
-        {
-            Debug.LogWarning($"{name}: Animator is not assigned.");
-            return;
-        }
-        if (string.IsNullOrWhiteSpace(solvedTrigger))
-        {
-            Debug.LogWarning($"{name}: 'solvedTrigger' is empty—animation trigger will not fire.");
-            return;
-        }
+        
+        
 
         // Check that the Animator has a Trigger parameter with this exact name
         foreach (var p in animator.parameters)
@@ -80,14 +71,14 @@ public class Room2ButtonOrder : MonoBehaviour
             }
         }
 
-        if (!_animTriggerExists)
-            Debug.LogWarning($"{name}: Animator has no Trigger parameter named '{solvedTrigger}'.");
+        
+           
     }
 
     private void ValidateOrder()
     {
-        if (order == null || order.Length == 0)
-            Debug.LogWarning($"{name}: 'order' is empty—puzzle can never finish.");
+        
+            
     }
 
     public void HandleButtonPressed(int buttonId)
@@ -121,10 +112,11 @@ public class Room2ButtonOrder : MonoBehaviour
                 {
                     animator.ResetTrigger(solvedTrigger); // avoid sticky trigger
                     animator.SetTrigger(solvedTrigger);
+                    triggerSound.enabled = true;
                 }
                 else
                 {
-                    Debug.LogWarning($"{name}: Animation not fired. Animator assigned? Trigger exists? Trigger name='{solvedTrigger}'");
+                    
                 }
             }
         }

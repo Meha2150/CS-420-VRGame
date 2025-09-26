@@ -7,6 +7,8 @@ public class Room1Interactions : MonoBehaviour
     private static readonly int Down = Animator.StringToHash("PressurePlateDown");
     private static readonly int Up = Animator.StringToHash("PressurePlateUp");
     [SerializeField] private string triggerTag = "PuzzleEnd";
+    [SerializeField] private GameObject audioTrigger;
+    private AudioSource triggerSound;
 
     // Track how many qualifying objects are on the plate (handles multiple colliders)
     private int occupants = 0;
@@ -16,6 +18,7 @@ public class Room1Interactions : MonoBehaviour
         var col = GetComponent<Collider>();
         if (!col.isTrigger) Debug.LogWarning($"{name}: Collider is not set as Trigger.");
         if (exitDoorAnimator == null) Debug.LogError($"{name}: ExitDoorAnimator is NOT assigned.");
+        triggerSound = audioTrigger.GetComponent<AudioSource>();
     }
 
     private bool MatchesTag(Collider other)
@@ -28,7 +31,7 @@ public class Room1Interactions : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!MatchesTag(other) || exitDoorAnimator == null) return;
-
+        triggerSound.enabled = true;
         if (occupants++ == 0)
         {
             exitDoorAnimator.ResetTrigger(Up);
